@@ -1,4 +1,4 @@
-package hacks.interviewpreparationkit.jumpingontheclouds;
+package hacks.interviewpreparationkit.warmupchallenges.jumpingontheclouds;
 import java.io.*;
 
 public class Solution {
