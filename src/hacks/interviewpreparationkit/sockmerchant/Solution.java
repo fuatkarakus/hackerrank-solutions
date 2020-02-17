@@ -1,4 +1,4 @@
-package java.interviewpreparationkit.sockmerchant;
+package hacks.interviewpreparationkit.sockmerchant;
 
 import java.io.*;
 import java.math.*;
