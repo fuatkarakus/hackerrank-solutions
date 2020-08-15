@@ -11,8 +11,7 @@ public class Solution {
 
     // Complete the hourglassSum function below.
     static int hourglassSum(int[][] arr) {
-
-
+        return 0;
     }
 
     private static final Scanner scanner = new Scanner(System.in);

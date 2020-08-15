@@ -1,5 +1,5 @@
 /target/
-/out/
+out/
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
@@ -102,3 +102,6 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 .class
 .DS_Store
+.idea/
+*.xml
+*.iml
