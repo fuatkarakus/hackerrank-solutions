@@ -1,6 +1,8 @@
+package hacks.introduction.stdinstdouttwo;
+
 import java.util.Scanner;
 
-public class Solution {
+public class Codility {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);

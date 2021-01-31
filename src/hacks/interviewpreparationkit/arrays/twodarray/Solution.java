@@ -1,4 +1,5 @@
-package hacks.interviewpreparationkit.arrays.twodarray;
+package interviewpreparationkit.arrays.twodarray;
+
 import java.io.*;
 import java.math.*;
 import java.security.*;
