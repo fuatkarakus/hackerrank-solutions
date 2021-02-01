@@ -1,15 +1,7 @@
 package hacks;
 
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PipedOutputStream;
-import java.sql.Array;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Stream;
+import java.util.*;
 
 
 class Calculator {
@@ -151,14 +143,63 @@ public class CodilityTest {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+
+    public static int longestSubarray(List<Integer> arr) {
+        if(arr.size() < 2) {
+            return arr.size();
+        }
+        int max = 0;
+        Set<Integer> set = new HashSet<>();
+        int i = 0;
+        int j = 1;
+        while (i < arr.size() - 1) {
+            set.add(arr.get(i));
+            while (j < arr.size() && Math.abs(arr.get(i) - arr.get(j)) < 2) {
+                if (!set.contains(arr.get(j))) {
+                    if (set.size() == 2) {
+                        break;
+                    } else {
+                        set.add(arr.get(j));
+                    }
+                }
+                ++j;
+            }
+            max = Math.max(max, j - i);
+            j = ++i + 1;
+            set.clear();
+        }
+        return max;
+    }
+
+    public static String findSubstring(String s, int k) {
+        List<String> vovels = Arrays.asList("a", "e", "i", "o", "u");
+        int size=  s.length();
+        String sub = "";
+        for ( int i = 0; i < size ; i ++ ) {
+            if (i + k > size) {
+                break;
+            }
+            sub = s.substring(i, i + k);
+            int count = (int ) Arrays.stream(sub.split("")).filter(vovels::contains).count();
+            if (count == k) {
+                break;
+            } else {
+                sub = "Not Found!";
+            }
+        }
+        return sub;
+    }
+
+
+
     public static void main(String[] args) {
         int[][] arr = new int[][]{{1, 2, 100},
                 {2, 5, 100},
                 {3, 4, 100}};
 
-        staircase(6);
+        //System.out.println(longestSubarray(Arrays.asList(195593459,195593459,195593458,195593457,195593459,195593459,195593458,195593459,195593458,195593459,195593457,195593458,195593458,195593457,195593457,195593457,195593457,195593458,195593457,195593459,195593457,195593457,195593458,195593457,195593457,195593458,195593458,195593457,195593458,195593457,195593457,195593457,195593459,195593459,195593459,195593458,195593458,195593458,195593458,195593458,195593457,195593459,195593459,195593458,195593457,195593459,195593459,195593457,195593459,195593459,195593457,195593457,195593459,195593459,195593457,195593459,195593458,195593458,195593458,195593457,195593458,195593458,195593458,195593458,195593457,195593458,195593459,195593458,195593459,195593458,195593459,195593458,195593458,195593459,195593459,195593458,195593457,195593459,195593459,195593459,195593459,195593457,195593459,195593459,195593459,195593459,195593459,195593457,195593459,195593457,195593458,195593457,195593458,195593458,195593457,195593459,195593457,195593457,195593459,195593457,195593459,195593459,195593458,195593457,195593459,195593458,195593459,195593459,195593458,195593458,195593459,195593458,195593459,195593458,195593457,195593459,195593458,195593457,195593457,195593457,195593458,195593457,195593459,195593457,195593458,195593459,195593458,195593458,195593459,195593457,195593459,195593459,195593459,195593458,195593459,195593458,195593458,195593459,195593458,195593459,195593458,195593457,195593457,195593457,195593459,195593458,195593459,195593458,195593457)));
+        // System.out.println(longestSubarray(Arrays.asList(1,1, 1, 2, 2, 3)));
 
-        new Adder().za();
-
+        System.out.println(findSubstring("aaseuifeokiifii", 4));
     }
 }
