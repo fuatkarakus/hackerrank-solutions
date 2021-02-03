@@ -190,7 +190,58 @@ public class CodilityTest {
         return sub;
     }
 
+    static int dp[][] = new int[1001][1001];
 
+    public static int isPal(String s, int i, int j) {
+
+        if (i > j)
+            return 1;
+
+        if (dp[i][j] != -1)
+            return dp[i][j];
+
+        if (s.charAt(i) != s.charAt(j))
+            return dp[i][j] = 0;
+
+        return dp[i][j] = isPal(s, i + 1, j - 1);
+    }
+
+    public static int countSubstrings(String s) {
+        for (int[] row : dp) {
+            Arrays.fill(row, -1);
+        }
+        int n = s.length();
+        int count = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (isPal(s, i, j) != 0)
+                    count++;
+            }
+        }
+        int c = s.length();
+        return count + c ;
+    }
+
+    public static int jumps(int flagHeight, int bigJump) {
+        return  ((flagHeight -  (flagHeight % bigJump) ) / bigJump) +  (flagHeight % bigJump) ;
+    }
+
+    public static int countPairs(List<Integer> numbers, int k) {
+        HashSet<Integer> hLow = new HashSet<>();
+        HashSet<Integer> hHigh = new HashSet<>();
+        int count = 0;
+        for (int i : numbers) {
+            hLow.add(i);
+            hHigh.add(i+k);
+        }
+        for (int i : hHigh) {
+            if (hLow.contains(i)) {
+                count++;
+            }
+        }
+        return count;
+    }
 
     public static void main(String[] args) {
         int[][] arr = new int[][]{{1, 2, 100},
@@ -200,6 +251,6 @@ public class CodilityTest {
         //System.out.println(longestSubarray(Arrays.asList(195593459,195593459,195593458,195593457,195593459,195593459,195593458,195593459,195593458,195593459,195593457,195593458,195593458,195593457,195593457,195593457,195593457,195593458,195593457,195593459,195593457,195593457,195593458,195593457,195593457,195593458,195593458,195593457,195593458,195593457,195593457,195593457,195593459,195593459,195593459,195593458,195593458,195593458,195593458,195593458,195593457,195593459,195593459,195593458,195593457,195593459,195593459,195593457,195593459,195593459,195593457,195593457,195593459,195593459,195593457,195593459,195593458,195593458,195593458,195593457,195593458,195593458,195593458,195593458,195593457,195593458,195593459,195593458,195593459,195593458,195593459,195593458,195593458,195593459,195593459,195593458,195593457,195593459,195593459,195593459,195593459,195593457,195593459,195593459,195593459,195593459,195593459,195593457,195593459,195593457,195593458,195593457,195593458,195593458,195593457,195593459,195593457,195593457,195593459,195593457,195593459,195593459,195593458,195593457,195593459,195593458,195593459,195593459,195593458,195593458,195593459,195593458,195593459,195593458,195593457,195593459,195593458,195593457,195593457,195593457,195593458,195593457,195593459,195593457,195593458,195593459,195593458,195593458,195593459,195593457,195593459,195593459,195593459,195593458,195593459,195593458,195593458,195593459,195593458,195593459,195593458,195593457,195593457,195593457,195593459,195593458,195593459,195593458,195593457)));
         // System.out.println(longestSubarray(Arrays.asList(1,1, 1, 2, 2, 3)));
 
-        System.out.println(findSubstring("aaseuifeokiifii", 4));
+        System.out.println(countPairs(Arrays.asList( 1, 1, 2, 2, 3, 3), 1));
     }
 }
